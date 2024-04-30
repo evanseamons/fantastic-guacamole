@@ -2,12 +2,14 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: gray;
+    background-color: rgb(236, 236, 236);
 }
 header {
     background-color: white;
     padding: 10px 20px;
     align-items: center;
+    margin: 0px auto;
+    max-width: 1000px;
 }
 h1 {
     align-self: center;
@@ -23,32 +25,63 @@ footer {
     padding: 0 20px;
 }
 .comment {
-
+    display: flex;
     margin-bottom: 10px;
     padding: 10px;
-    background-color: rgb(150, 150, 150);
+    background-color: rgb(245, 245, 245);
+    
 }
+
+.comment-content {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
 .comment-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 5px;
+    
 }
+
+.comment-body {
+    flex: 1;
+   
+}
+
+.profilePicture {
+    max-height: 50px;
+    max-width: 50px;
+    margin-right: 10px;
+}
+
 .comment-actions {
     display: flex;
     gap: 10px;
+    flex-direction: row-reverse;
 }
 .comment-actions button {
     cursor: pointer;
     padding: 5px 10px;
     border: none;
-    
+    background-color: rgb(245, 245, 245);
+    color: rgb(187, 224, 255);
 }
+
+.username {
+font-weight: bold;
+margin-right: 10px;
+}
+
 #create-comment {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -63,10 +96,13 @@ footer {
 #create-comment button {
     padding: 5px 10px;
     border: none;
-    background-color: #333;
-    color: white;
+    background-color: #ffffff;
+    color: rgb(126, 197, 255);
     cursor: pointer;
 }
 #create-comment button:hover {
-    background-color: #555;
+    color: rgb(82, 177, 255);
+}
+#username-input {
+    max-width: 200px;
 }

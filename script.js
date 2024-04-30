@@ -4,28 +4,27 @@ let comments = [];
             $("#comments-container").empty();
             comments.forEach((comment, index) => {
                 let $comment = $(`
+                
                     <div class="comment" data-index="${index}">
-                        <div class="comment-header">
-                            <span>${comment.displayName}</span>
+                    <div class="profpic"> <img src="${comment.defaultProfilePic}" alt="profile picture" class="profilePicture"></div>
+                    <div class="comment-content">
+                    <div class="comment-header">
+                            <span class="username">${comment.displayName}</span>
                             <div class="comment-actions">
                                 <button class="delete-comment">Delete</button>
                                 <button class="edit-comment">Edit</button>
                             </div>
                         </div>
                         <div class="comment-body">${comment.text}</div>
+                        
                     </div>
                 `);
                 $("#comments-container").append($comment);
             });
         }
 
-        function addComment(displayName, text) {
-            comments.unshift({ displayName, text });
-            renderComments();
-        }
-
-        function deleteComment(index) {
-            comments.splice(index, 1);
+        function addComment(displayName, text, defaultProfilePic) {
+            comments.unshift({ displayName, text, defaultProfilePic });
             renderComments();
         }
 
@@ -34,23 +33,23 @@ let comments = [];
             renderComments();
         }
 
+        function deleteComment(index) {
+            comments.splice(index, 1);
+            renderComments();
+        }
+
         $(document).ready(() => {
-           // Create comment
+           // Create
     $("#comment-button").click(() => {
         const username = $("#username-input").val();
         const text = $("#comment-input").val();
-        addComment(username, text);
+        const defaultProfilePic = "defaultProfilepic.jpg";
+        addComment(username, text, defaultProfilePic);
         $("#username-input").val("");
         $("#comment-input").val("");
     });
 
-            // Delete comment
-            $(document).on("click", ".delete-comment", function() {
-                const index = $(this).closest(".comment").data("index");
-                deleteComment(index);
-            });
-
-            // Edit comment
+            // Edit 
             $(document).on("click", ".edit-comment", function() {
                 const $comment = $(this).closest(".comment");
                 const index = $comment.data("index");
@@ -58,5 +57,11 @@ let comments = [];
                 if (newText !== null) {
                     editComment(index, newText);
                 }
+            });
+
+            // Delete
+            $(document).on("click", ".delete-comment", function() {
+                const index = $(this).closest(".comment").data("index");
+                deleteComment(index);
             });
         });
